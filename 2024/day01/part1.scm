@@ -10,3 +10,5 @@
 ; sort these lists
 ; iterate over lists getting the difference between the element
 ; sum these diffs
+
+
