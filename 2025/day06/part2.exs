@@ -11,14 +11,22 @@ defmodule Aoc.Part2 do
       parse_file(path)
       |> Enum.map(fn x -> x |> String.split(" ", trim: true) end)
 
-    ops = arr |> Enum.at(-1)
+    ops = arr |> Enum.at(-1) |> Enum.reverse()
 
     nums =
       arr
       |> Enum.slice(0..-2//1)
       |> Enum.map(fn n ->
-        n |> Enum.map(fn x -> x |> String.to_integer() end)
+        n
+        |> Enum.map(fn x ->
+          String.split(x, "", trim: true)
+          |> Enum.reverse()
+          |> Enum.join("")
+          |> String.to_integer()
+        end)
+        |> Enum.reverse()
       end)
+      |> Enum.reverse()
 
     rows = Enum.to_list(0..(length(nums) - 1))
     cols = Enum.to_list(0..(length(nums |> Enum.at(0)) - 1))
@@ -33,16 +41,28 @@ defmodule Aoc.Part2 do
           nums |> Enum.at(r) |> Enum.at(c)
         end)
 
+      max_length =
+        operands
+        |> Enum.map(fn x -> x |> Integer.digits() |> length() end)
+        |> Enum.max()
+
+      padded_operands =
+        operands
+        |> Enum.map(&Integer.to_string/1)
+        |> Enum.map(fn x -> String.pad_leading(x, max_length) end)
+        |> Enum.map(&String.split(&1, "", trim: true))
+        |> IO.inspect()
+
+      #
       cond do
         operator == "*" -> operands |> Enum.reduce(1, fn x, acc -> acc * x end)
         operator == "+" -> operands |> Enum.reduce(0, fn x, acc -> acc + x end)
       end
     end)
-    |> IO.inspect()
     |> Enum.sum()
     |> IO.inspect()
   end
 end
 
 Aoc.Part2.execute("./sample.txt")
-Aoc.Part2.execute("./data.txt")
+# Aoc.Part2.execute("./data.txt")

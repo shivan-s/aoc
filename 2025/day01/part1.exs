@@ -39,8 +39,9 @@ defmodule Part1 do
     end)
     |> Enum.filter(fn x -> x == 0 end)
     |> length
+    |> IO.inspect()
   end
 end
 
-Part1.execute("./sample.txt") |> IO.puts()
-Part1.execute("./data.txt") |> IO.puts()
+Part1.execute("./sample.txt")
+Part1.execute("./data.txt")

@@ -12,8 +12,8 @@ defmodule Part1 do
 
     cond do
       acc == 0 -> {acc, clicks + 1}
-      acc < 0 -> {100 + acc, clicks + 1}
-      acc > 99 -> {acc - 100, clicks + 1}
+      acc < 0 and pos != 0 -> {100 + acc, clicks + 1}
+      acc > 99 and pos != 0 -> {acc - 100, clicks + 1}
       true -> {acc, clicks}
     end
   end
@@ -39,11 +39,12 @@ defmodule Part1 do
       |> Enum.slice(0..idx)
       |> Enum.reduce({50, 0}, fn {val, _}, {pos, _} -> move(pos, val) end)
     end)
-    |> Enum.map(fn {_, clicks} -> clicks end)
     |> IO.inspect()
+    |> Enum.map(fn {_, clicks} -> clicks end)
     |> Enum.sum()
+    |> IO.inspect()
   end
 end
 
-# Part1.execute("./sample.txt") |> IO.puts()
-Part1.execute("./data.txt") |> IO.puts()
+Part1.execute("./sample.txt")
+# Part1.execute("./data.txt") |>
