@@ -6,3 +6,4 @@
 - [2022 | Python](https://github.com/shivan-s/aoc2022)
 - 2023 - Started but didn't commit?
 - [2024](./2024)
+- [2025 | Elixir](./2025)
