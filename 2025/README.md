@@ -84,7 +84,7 @@ function divideOrNull(num: number, dem: number): number | null {
 }
 ```
 
-Here is elixir, we can also show the documentation annotation for functions
+Here is elixir, we can also show the documentation annotation for functions, and on top of that, we see a case for pattern matching.
 
 ```elixir
 @type MaybeFloat :: Float | None
@@ -96,3 +96,26 @@ def divideOrNull(a, b) do
     end
 end
 ```
+
+#### Lists are Linked lists
+
+```ts
+> const l = [1, 2, 3, 4]
+> const [head, ...rest] = l
+> head
+1
+> rest
+[2, 3, 4]
+```
+
+```elixir
+> l = [1, 2, 3, 4]
+> [head | tail] = l
+[1, 2, 3, 4]
+> head
+1
+> tail
+[2, 3, 4]
+```
+
+#### Immutability
