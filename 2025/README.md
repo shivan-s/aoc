@@ -65,9 +65,10 @@ For example you can either do:
 ```elixir
 > list = [1, 2, 3, 4]
 > Enum.map(list, fn n -> Integer.to_string(n) end)
-> # Or
+["1", "2", "3", "4"]
+# Or
 > list |> Enum.map(fn n -> n |> Integer.toString() end)
-> # Or even
+# Or even
 > list |> Enum.map(&Integer.toString\\1)
 ```
 
@@ -84,7 +85,7 @@ function divideOrNull(num: number, dem: number): number | null {
 }
 ```
 
-Here is elixir, we can also show the documentation annotation for functions, and on top of that, we see a case for pattern matching.
+We can also show the documentation annotation for functions, and on top of that, we see a case for pattern matching.
 
 ```elixir
 @type MaybeFloat :: Float | None
@@ -118,4 +119,67 @@ end
 [2, 3, 4]
 ```
 
-#### Immutability
+#### No `for` or `while` loops
+
+This achieved using Enum's `map`, `reduce`.
+
+```js
+let i = 0;
+let total = 0;
+const nums = [1, 2, 3, 4];
+while (i < nums.length) {
+  total += nums[i];
+  i++;
+}
+
+// or
+total2 = 0;
+for (j = 0; i <= nums.length; j++) {
+  total2 += nums[j];
+}
+```
+
+```elixir
+nums = [1, 2, 3, 4]
+nums |> Enum.reduce(0, fn x, acc -> acc + x end)
+
+```
+
+#### Immutable
+
+Variables are rebound. Think of variables being names rather than an address pointing to memory. Every time an assignment is made, a label is created for a new space in memory.
+
+```python
+x = 1
+if True:
+    x = 2
+print(x) # 2
+```
+
+```js
+let x = 1;
+if (true) {
+  x = 2;
+}
+console.log(x); // 2
+```
+
+```js
+const x = 1;
+if (true) {
+  const x = 2;
+  console.log(x); // 2
+}
+console.log(x); // 1
+```
+
+```elixir
+x = 1
+
+if 1 do
+  x = 2
+  x |> IO.inspect(label: "inner") # inner: 2
+end
+
+x |> IO.inspect(label: "outer") # outer: 1
+```
