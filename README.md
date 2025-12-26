@@ -2,8 +2,8 @@
 
 ## Previous attempts
 
-- [2021 | Golang | Also first time!](https://github.com/shivan-s/aoc2021)
-- [2022 | Python](https://github.com/shivan-s/aoc2022)
+- [2021 | Golang | Also first time!](https://github.com/shivan-s/aoc2021) - Private
+- [2022 | Python](https://github.com/shivan-s/aoc2022) - Private
 - 2023 - Started but didn't commit?
 - [2024](./2024)
 - [2025 | Elixir](./2025)
