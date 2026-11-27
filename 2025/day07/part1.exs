@@ -17,6 +17,12 @@ defmodule Aoc.Part1 do
       |> Enum.with_index()
       |> Enum.find(fn {val, _} -> val == "S" end)
       |> (fn {_, idx} -> idx end).()
+
+    enum =
+      map
+      |> Enum.slice(1..-1//1)
+      |> Enum.with_index()
+      |> Enum.filter(fn {_, idx} -> rem(idx, 2) != 0 end)
       |> IO.inspect()
   end
 end
